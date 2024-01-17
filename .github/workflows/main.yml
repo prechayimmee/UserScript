@@ -51,5 +51,7 @@ jobs:
 
       - name: Deploy application
         run: npm run deploy
+      - name: Notify stakeholders
+        # Add a step to notify stakeholders here
       - name: Clean up environment
         run: cleanup-script
