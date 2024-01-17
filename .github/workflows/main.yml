@@ -74,6 +74,7 @@ jobs:
       run: notify-failures
       run: notify-on-resource-unavailability
         run: cleanup-notification
+        run: cleanup-notification
         run: cleanup-script
         - name: Handle Errors or Failures
       if: failure()
@@ -86,4 +87,5 @@ jobs:
       run: handle-failures
       run: notify-failures
         run: notify-on-resource-unavailability
+        run: cleanup-script
         run: cleanup-script
