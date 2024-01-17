@@ -67,9 +67,9 @@ jobs:
       if: always()
       run: notify-failures
       if: timed out()
-      run: handle-errors
+      run: handle-resource-errors
       run: cleanup-script
       run: handle-failures
       run: notify-failures
-        run: handle-errors
+        run: notify-on-resource-unavailability
         run: cleanup-script
