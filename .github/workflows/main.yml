@@ -43,7 +43,11 @@ jobs:
       - name: Save lock file
         run: cp package-lock.json ${{ github.workspace }}
 
-      - name: Save cache
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-artifacts
+          path: build
         uses: actions/upload-artifact@v2
         with:
           name: npm-cache
