@@ -87,11 +87,20 @@ jobs:
       run: handle-failures
       if: always()
       run: notify-failures
-      if: timed out()
+      if: failure()
+      run: handle-network-errors
+      run: notify-failures
+      if: always()
+      run: notify-on-resource-unavailability
+      run: cleanup-notification
+      run: cleanup-notification
+      run: cleanup-script
+      - name: Handle Errors or Failures
       run: handle-resource-errors
       run: cleanup-script
       run: handle-failures
       run: notify-failures
         run: notify-on-resource-unavailability
+      run: cleanup-script
         run: cleanup-script
         run: cleanup-script
