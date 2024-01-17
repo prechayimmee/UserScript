@@ -5,6 +5,22 @@ name: Node.js CI
 
 on:
   push:
+    branches: [ 'main' , 'staging' , 'develop' ]
+  pull_request:
+    branches: [ 'main' , 'staging' , 'develop' ]
+
+env:
+  NPM_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+
+jobs:
+  build_and_test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+on:
+  push:
+  branches: [ 'main' , 'staging' , 'develop' ]
+    branches: [ 'main' , 'staging' , 'develop' ]
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
@@ -16,16 +32,61 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [12.x, 14.x, 16.x, 18.x]
+      matrix:
+        node-version: [14.x]
+    needs: e2e
+
+    - name: Cache node modules
+          npm@latest
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-build-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-build-node-
+        push: ${{ github.sha }}
+
+    - name: Cache node modules
+      uses: actions/cache@v2
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-build-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-build-node-
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    - name: Cache node modules
+          npm@latest
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-build-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-build-node-
+        push: ${{ github.sha }
 
     steps:
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+      with:
+          npm@latest
+                token: ${{secrets.ACTIONS_TOKEN}}
+- name: Deploy
+      run: npm run deploy
+      with:
+        always-auth: false
+        check-latest: false
+      with:
+        always-auth: false
+        check-latest: false
+          npm@latest
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+    - run: npm run assert
+    - name: End-to-End Testing
+      run: npm run e2e
+    - name: Test
+      run: npm run assert
+    - name: Deploy
+      run: npm run deploy
