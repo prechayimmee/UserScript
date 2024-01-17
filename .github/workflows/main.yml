@@ -61,6 +61,8 @@ jobs:
         - name: Handle Cancellation and Termination
         run: cleanup-notification
         run: cleanup-script
-    - name: Handle Errors or Failures
+        - name: Handle Errors or Failures
+      run: handle-failures
+      run: notify-failures
         run: handle-errors
         run: cleanup-script
