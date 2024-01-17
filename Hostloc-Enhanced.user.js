@@ -14,7 +14,7 @@
 // @grant        GM_setValue
 // @grant        GM_notification
 // @grant        unsafeWindow
-// @license      GPL-3.0 License
+// @license      GPL-3.0
 // @run-at       document-end
 // @namespace    https://greasyfork.org/scripts/414005
 // @supportURL   https://github.com/XIU2/UserScript
