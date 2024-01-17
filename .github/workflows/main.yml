@@ -59,6 +59,7 @@ jobs:
         run: finalize-notification
             - name: Post-run actions
         - name: Handle Cancellation and Termination
+        run: cleanup-script
         run: cleanup-notification
         run: cleanup-script
         - name: Handle Errors or Failures
