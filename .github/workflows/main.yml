@@ -49,8 +49,5 @@ jobs:
           name: npm-cache
           path: ~/.npm
 
-      - name: Upload lock file
-        uses: actions/upload-artifact@v2
-        with:
-          name: lock-file
-          path: ${{ github.workspace }}/package-lock.json
+      - name: Deploy application
+        run: npm run deploy
