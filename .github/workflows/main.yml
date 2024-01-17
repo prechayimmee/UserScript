@@ -33,7 +33,11 @@ jobs:
       - name: Generate lock file
         run: npm run build
 
-      - name: Run tests
+            - name: Run tests
+        run: npm test
+
+      - name: Build process
+        run: npm run build
         run: npm test
 
       - name: Save lock file
