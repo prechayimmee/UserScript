@@ -58,6 +58,8 @@ jobs:
       - name: Notify stakeholders
         run: finalize-notification
             - name: Post-run actions
+        - name: Handle Cancellation and Termination
+        run: cleanup-notification
         run: cleanup-script
     - name: Handle Errors or Failures
         run: handle-errors
