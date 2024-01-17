@@ -62,6 +62,13 @@ jobs:
         run: cleanup-notification
         run: cleanup-script
         - name: Handle Errors or Failures
+      if: failure()
+      run: handle-failures
+      if: always()
+      run: notify-failures
+      if: timed out()
+      run: handle-errors
+      run: cleanup-script
       run: handle-failures
       run: notify-failures
         run: handle-errors
