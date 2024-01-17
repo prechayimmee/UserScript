@@ -13,7 +13,7 @@
 // @grant        GM_getValue
 // @grant        GM_setValue
 // @grant        GM_notification
-// @license      GPL-3.0 License
+// @license      GPL-3.0
 // @run-at       document-end
 // @namespace    https://greasyfork.org/scripts/412362
 // @supportURL   https://github.com/XIU2/UserScript
