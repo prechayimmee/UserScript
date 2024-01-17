@@ -51,3 +51,5 @@ jobs:
 
       - name: Deploy application
         run: npm run deploy
+      - name: Clean up environment
+        run: cleanup-script
