@@ -59,7 +59,20 @@ jobs:
         run: finalize-notification
             - name: Post-run actions
         - name: Handle Cancellation and Termination
+                - name: Handle Cancellation and Termination
         run: cleanup-script
+        if: cancelled()
+      - name: Handle Errors or Failures
+      if: failure()
+      run: handle-failures
+      if: always()
+      run: notify-failures
+      if: timed out()
+      run: handle-resource-errors
+      run: cleanup-script
+      run: handle-failures
+      run: notify-failures
+      run: notify-on-resource-unavailability
         run: cleanup-notification
         run: cleanup-script
         - name: Handle Errors or Failures
