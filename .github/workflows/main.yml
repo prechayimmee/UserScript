@@ -56,7 +56,7 @@ jobs:
       - name: Deploy application
         run: npm run deploy
       - name: Notify stakeholders
-        # Add a step to notify stakeholders here
+        run: finalize-notification
             - name: Post-run actions
         run: cleanup-script
     - name: Handle Errors or Failures
