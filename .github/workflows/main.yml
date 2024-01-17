@@ -58,5 +58,6 @@ jobs:
       - name: Notify stakeholders
         # Add a step to notify stakeholders here
             - name: Clean up cache and environment
-        run: cleanup-script
+    - name: Handle Errors or Failures
+        run: handle-errors
         run: cleanup-script
